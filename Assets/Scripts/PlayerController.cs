@@ -3,8 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour {
-    [SerializeField] private float movSpeed = 2f;
-    void Update() {
+    [SerializeField] private float movSpeed = 5f;
+    private Animator animator;
+    private string IS_WALKING = "isWalking";
+    private void Start() {
+        animator = GetComponent<Animator>();
+    }
+    private void Update() {
         HandleMovementInput();
         //HandleRotationInput();
         //HandleShootInput();
@@ -15,15 +20,20 @@ public class PlayerController : MonoBehaviour {
 
         if (Input.GetKey(KeyCode.W)) {
             inputVector.x = +1;
-        }
-        if (Input.GetKey(KeyCode.S)) {
+            animator.SetBool(IS_WALKING, true);
+
+        } else if (Input.GetKey(KeyCode.S)) {
             inputVector.x = -1;
-        }
-        if (Input.GetKey(KeyCode.A)) {
+            animator.SetBool(IS_WALKING, true);
+        } else if (Input.GetKey(KeyCode.A)) {
             inputVector.y = +1;
-        }
-        if (Input.GetKey(KeyCode.D)) {
+            animator.SetBool(IS_WALKING, true);
+        } else if (Input.GetKey(KeyCode.D)) {
             inputVector.y = -1;
+            animator.SetBool(IS_WALKING, true);
+        }
+        else {
+            animator.SetBool(IS_WALKING, false);
         }
 
         inputVector = inputVector.normalized;
