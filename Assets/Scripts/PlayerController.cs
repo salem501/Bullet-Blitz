@@ -3,10 +3,16 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour {
-    [SerializeField] private float movSpeed = 2f;
-    void Update() {
+    [SerializeField] private float movSpeed = 5f;
+    private Animator animator;
+    private string IS_WALKING = "isWalking";
+
+    private void Start() {
+        animator = GetComponent<Animator>();
+    }
+    private void Update() {
         HandleMovementInput();
-        //HandleRotationInput();
+        HandleRotationInput();
         //HandleShootInput();
     }
 
@@ -14,17 +20,28 @@ public class PlayerController : MonoBehaviour {
         Vector2 inputVector = new Vector2(0, 0);
 
         if (Input.GetKey(KeyCode.W)) {
-            inputVector.x = +1;
-        }
-        if (Input.GetKey(KeyCode.S)) {
-            inputVector.x = -1;
-        }
-        if (Input.GetKey(KeyCode.A)) {
             inputVector.y = +1;
         }
-        if (Input.GetKey(KeyCode.D)) {
+        if (Input.GetKey(KeyCode.S)) {
             inputVector.y = -1;
         }
+
+        if (Input.GetKey(KeyCode.A)) {
+            inputVector.x = -1;
+        }
+
+        if (Input.GetKey(KeyCode.D)) {
+            inputVector.x = +1;
+        }
+
+        if (Input.GetKey(KeyCode.D)|| Input.GetKey(KeyCode.W)|| Input.GetKey(KeyCode.S)|| Input.GetKey(KeyCode.A)) {
+            animator.SetBool(IS_WALKING, true);
+        }
+        else {
+            animator.SetBool(IS_WALKING, false);
+        }
+
+        
 
         inputVector = inputVector.normalized;
         Vector3 moveDir = new Vector3(inputVector.x, 0f, inputVector.y);
@@ -37,9 +54,10 @@ public class PlayerController : MonoBehaviour {
     void HandleRotationInput() {
         RaycastHit hit;
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-
+        GameObject childObject = transform.GetChild(2).GetChild(2).gameObject;
+        Transform childTransform = childObject.GetComponent<Transform>();
         if (Physics.Raycast(ray, out hit)) {
-            transform.LookAt(new Vector3(hit.point.x, transform.position.y, hit.point.z));
+            childTransform.LookAt(new Vector3(hit.point.x, childTransform.position.y, hit.point.z));
         }
 
     }
