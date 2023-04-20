@@ -13,7 +13,7 @@ public class PlayerController : MonoBehaviour {
     private void Update() {
         HandleMovementInput();
         HandleRotationInput();
-        //HandleShootInput();
+        HandleShootInput();
     }
 
     void HandleMovementInput() {

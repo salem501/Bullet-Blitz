@@ -10,22 +10,41 @@ public class Projectile : MonoBehaviour
     private float projectileSpeed;
     [SerializeField]
     private float maxFireRange;
+    [SerializeField]
+    private float damage;
+
+    private bool shouldMove;
+    private GameObject triggeringEnemy;
 
     // Start is called before the first frame update
     void Start()
     {
-        firingPoint = transform.position;
+        
     }
 
     // Update is called once per frame
     void Update()
     {
-        MoveProjectile();
+        if(shouldMove) {
+            MoveProjectile();
+        }
+    }
+
+    public void OnTriggerEnter(Collider other) {
+        triggeringEnemy = other.gameObject;
+        triggeringEnemy.GetComponent<EnemyController>().health -= damage;
+        ProjectilePool.Instance.ReturnToPool(this);
+    }
+
+    public void activateProjectile() {
+        firingPoint = transform.position;
+        shouldMove = true;
     }
 
     void MoveProjectile() {
         if (Vector3.Distance(firingPoint, transform.position) > maxFireRange) {
-            Destroy(this.gameObject);
+            ProjectilePool.Instance.ReturnToPool(this);
+            shouldMove = false;
         }
         transform.Translate(Vector3.forward * projectileSpeed * Time.deltaTime);
     }
