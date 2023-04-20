@@ -11,21 +11,31 @@ public class Projectile : MonoBehaviour
     [SerializeField]
     private float maxFireRange;
 
+    private bool shouldMove;
+
     // Start is called before the first frame update
     void Start()
     {
-        firingPoint = transform.position;
+        
     }
 
     // Update is called once per frame
     void Update()
     {
-        MoveProjectile();
+        if(shouldMove) {
+            MoveProjectile();
+        }
+    }
+
+    public void activateProjectile() {
+        firingPoint = transform.position;
+        shouldMove = true;
     }
 
     void MoveProjectile() {
         if (Vector3.Distance(firingPoint, transform.position) > maxFireRange) {
-            Destroy(this.gameObject);
+            ProjectilePool.Instance.ReturnToPool(this);
+            shouldMove = false;
         }
         transform.Translate(Vector3.forward * projectileSpeed * Time.deltaTime);
     }
