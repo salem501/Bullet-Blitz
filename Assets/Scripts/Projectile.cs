@@ -10,8 +10,11 @@ public class Projectile : MonoBehaviour
     private float projectileSpeed;
     [SerializeField]
     private float maxFireRange;
+    [SerializeField]
+    private float damage;
 
     private bool shouldMove;
+    private GameObject triggeringEnemy;
 
     // Start is called before the first frame update
     void Start()
@@ -25,6 +28,12 @@ public class Projectile : MonoBehaviour
         if(shouldMove) {
             MoveProjectile();
         }
+    }
+
+    public void OnTriggerEnter(Collider other) {
+        triggeringEnemy = other.gameObject;
+        triggeringEnemy.GetComponent<EnemyController>().health -= damage;
+        ProjectilePool.Instance.ReturnToPool(this);
     }
 
     public void activateProjectile() {

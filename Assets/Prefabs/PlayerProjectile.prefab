@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 7404138025382636207}
   - component: {fileID: 1116812642343096933}
   - component: {fileID: -7559271369862402224}
+  - component: {fileID: 5320963268922836310}
   m_Layer: 0
   m_Name: PlayerProjectile
   m_TagString: Untagged
@@ -30,7 +31,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7182353353979235516}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 5.1344, y: 4.7062, z: -0.42349}
+  m_LocalPosition: {x: 5.1344, y: 4.726, z: -0.42349}
   m_LocalScale: {x: 0.20001258, y: 0.20001258, z: 0.20001258}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2286,4 +2287,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   projectileSpeed: 35
-  maxFireRange: 50
+  maxFireRange: 30
+  damage: 25
+--- !u!65 &5320963268922836310
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7182353353979235516}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.2411438, y: 1.0942506, z: 3.8571336}
+  m_Center: {x: 0.008850361, y: -0.52957076, z: 1.4338492}
