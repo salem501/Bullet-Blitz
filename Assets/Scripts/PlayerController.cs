@@ -7,6 +7,8 @@ public class PlayerController : MonoBehaviour {
     private Animator animator;
     private string IS_WALKING = "isWalking";
 
+    public float points;
+
     private void Start() {
         animator = GetComponent<Animator>();
     }
