@@ -363,6 +363,7 @@ MonoBehaviour:
   health: 100
   pointsValue: 1
   collisionDamage: 50
+  movSpeed: 5
   player: {fileID: 0}
 --- !u!54 &8084106797839950910
 Rigidbody:
