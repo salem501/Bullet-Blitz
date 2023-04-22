@@ -9,6 +9,8 @@ public class EnemyController : MonoBehaviour
     [SerializeField]
     private float pointsValue;
     [SerializeField]
+    private float collisionDamage;
+    [SerializeField]
     private PlayerController player;
 
     // Start is called before the first frame update
@@ -23,6 +25,15 @@ public class EnemyController : MonoBehaviour
         if (health <= 0) {
             Die();
         }
+
+        this.transform.LookAt(new Vector3(player.transform.position.x, 3 ,player.transform.position.z));
+    }
+
+    public void OnTriggerEnter(Collider other) {
+        if (other == player.gameObject.GetComponent<Collider>()) {
+            player.health -= collisionDamage;
+        }
+        Destroy(this.gameObject);
     }
 
     private void Die() {

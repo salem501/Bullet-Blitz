@@ -9,6 +9,8 @@ public class PlayerController : MonoBehaviour {
 
     public float points;
 
+    public float health;
+
     private void Start() {
         animator = GetComponent<Animator>();
     }
@@ -16,6 +18,10 @@ public class PlayerController : MonoBehaviour {
         HandleMovementInput();
         HandleRotationInput();
         HandleShootInput();
+
+        if (health <= 0) {
+            Die();
+        }
     }
 
     void HandleMovementInput() {
@@ -68,5 +74,10 @@ public class PlayerController : MonoBehaviour {
         if (Input.GetButton("Fire1")) {
             PlayerGun.Instance.Shoot();
         }
+    }
+
+    private void Die() {
+        print("You died!");
+
     }
 }

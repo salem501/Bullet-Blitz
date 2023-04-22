@@ -362,6 +362,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 100
   pointsValue: 1
+  collisionDamage: 50
   player: {fileID: 0}
 --- !u!54 &8084106797839950910
 Rigidbody:
