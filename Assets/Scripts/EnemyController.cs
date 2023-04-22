@@ -15,6 +15,8 @@ public class EnemyController : MonoBehaviour
     [SerializeField]
     private PlayerController player;
 
+    private bool collided;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -33,9 +35,10 @@ public class EnemyController : MonoBehaviour
     }
 
     public void OnTriggerEnter(Collider other) {
-        if (other == player.gameObject.GetComponent<Collider>()) {
-            player.health -= collisionDamage;
+        if (collided == false && other == player.gameObject.GetComponent<Collider>()) {
+            collided = true;
             Destroy(this.gameObject);
+            player.health -= collisionDamage;
         }
     }
 

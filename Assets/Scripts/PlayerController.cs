@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour {
     [SerializeField] private float movSpeed = 5f;
@@ -22,6 +23,10 @@ public class PlayerController : MonoBehaviour {
         if (health <= 0) {
             Die();
         }
+    }
+
+    void OnDisable() {
+        PlayerPrefs.SetFloat("score", points);
     }
 
     void HandleMovementInput() {
@@ -78,6 +83,6 @@ public class PlayerController : MonoBehaviour {
 
     private void Die() {
         print("You died!");
-
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 }
