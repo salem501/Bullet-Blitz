@@ -36,6 +36,7 @@ public class EnemyController : MonoBehaviour
 
     public void OnTriggerEnter(Collider other) {
         if (collided == false && other == player.gameObject.GetComponent<Collider>()) {
+            player.lastTimeHit = Time.time;
             collided = true;
             Destroy(this.gameObject);
             player.health -= collisionDamage;

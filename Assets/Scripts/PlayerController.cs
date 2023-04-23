@@ -4,24 +4,31 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour {
-    [SerializeField] private float movSpeed = 5f;
+    public float movSpeed = 5f;
     private Animator animator;
     private string IS_WALKING = "isWalking";
-
+    public int maxHealth = 100;
+    public float lastTimeHit;
+    public float lastTimeHealed;
     public float points;
-
     public float health;
 
     private void Start() {
+        health = maxHealth;
         animator = GetComponent<Animator>();
     }
     private void Update() {
         HandleMovementInput();
         HandleRotationInput();
         HandleShootInput();
+        Heal();
+        Die();
+    }
 
-        if (health <= 0) {
-            Die();
+    private void Heal() {
+        if ((Time.time - lastTimeHit > 8) && (health < maxHealth) && (Time.time - lastTimeHealed > 1)) {
+            health += 10;
+            lastTimeHealed = Time.time;
         }
     }
 
@@ -58,8 +65,11 @@ public class PlayerController : MonoBehaviour {
 
         inputVector = inputVector.normalized;
         Vector3 moveDir = new Vector3(inputVector.x, 0f, inputVector.y);
-        transform.position += moveDir * Time.deltaTime * movSpeed;
-
+        bool canMove = !Physics.Raycast(transform.position, moveDir, .7f);
+        if (canMove) {
+            transform.position += moveDir * Time.deltaTime * movSpeed;
+        }
+        
         float rotateSpeed = 10f;
         transform.forward = Vector3.Slerp(transform.forward, moveDir, Time.deltaTime * rotateSpeed);
     }
@@ -82,7 +92,9 @@ public class PlayerController : MonoBehaviour {
     }
 
     private void Die() {
-        print("You died!");
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        if (health <= 0) {
+            print("You died!");
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        }
     }
 }
