@@ -34,6 +34,7 @@ public class Projectile : MonoBehaviour
         triggeringEnemy = other.gameObject;
         triggeringEnemy.GetComponent<EnemyController>().health -= damage;
         ProjectilePool.Instance.ReturnToPool(this);
+        shouldMove = false;
     }
 
     public void activateProjectile() {

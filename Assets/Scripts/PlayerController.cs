@@ -1,11 +1,16 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour {
     [SerializeField] private float movSpeed = 5f;
     private Animator animator;
     private string IS_WALKING = "isWalking";
+
+    public float points;
+
+    public float health;
 
     private void Start() {
         animator = GetComponent<Animator>();
@@ -14,6 +19,14 @@ public class PlayerController : MonoBehaviour {
         HandleMovementInput();
         HandleRotationInput();
         HandleShootInput();
+
+        if (health <= 0) {
+            Die();
+        }
+    }
+
+    void OnDisable() {
+        PlayerPrefs.SetFloat("score", points);
     }
 
     void HandleMovementInput() {
@@ -66,5 +79,10 @@ public class PlayerController : MonoBehaviour {
         if (Input.GetButton("Fire1")) {
             PlayerGun.Instance.Shoot();
         }
+    }
+
+    private void Die() {
+        print("You died!");
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 }
