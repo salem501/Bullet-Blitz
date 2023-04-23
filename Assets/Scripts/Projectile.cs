@@ -15,6 +15,7 @@ public class Projectile : MonoBehaviour
 
     private bool shouldMove;
     private GameObject triggeringEnemy;
+    [SerializeField] GameObject explosionPrefab;
 
     // Start is called before the first frame update
     void Start()

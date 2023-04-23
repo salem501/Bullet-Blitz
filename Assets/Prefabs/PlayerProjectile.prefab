@@ -2289,6 +2289,8 @@ MonoBehaviour:
   projectileSpeed: 35
   maxFireRange: 30
   damage: 25
+  explosionPrefab: {fileID: 985483039366664255, guid: f91edac4d13fc4343ba96bb6a843ad05,
+    type: 3}
 --- !u!65 &5320963268922836310
 BoxCollider:
   m_ObjectHideFlags: 0
