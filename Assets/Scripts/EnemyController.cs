@@ -62,7 +62,7 @@ public class EnemyController : MonoBehaviour
     }
     */
     private void move() {
-        this.transform.LookAt(new Vector3(player.transform.position.x, 1, player.transform.position.z));
+        this.transform.LookAt(new Vector3(player.transform.position.x, 0, player.transform.position.z));
         transform.position += transform.forward * Time.deltaTime * movSpeed;
     }
     
