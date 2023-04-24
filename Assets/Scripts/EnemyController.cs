@@ -4,10 +4,12 @@ using UnityEngine;
 
 public class EnemyController : MonoBehaviour
 {
-    [SerializeField]
+    private string IS_DEAD = "isDead";
+    private Animator animator;
     public float health;
+    private bool setHealth = true;
     [SerializeField]
-    private float pointsValue;
+    private int pointsValue;
     [SerializeField]
     private float collisionDamage;
     [SerializeField]
@@ -21,19 +23,49 @@ public class EnemyController : MonoBehaviour
     void Start()
     {
         player = FindAnyObjectByType<PlayerController>();
+        animator = GetComponent<Animator>();
     }
 
     // Update is called once per frame
     void Update()
-    {
-        if (health <= 0) {
-            Die();
-        }
-        
-        this.transform.LookAt(new Vector3(player.transform.position.x, 3 ,player.transform.position.z));
-        transform.position += transform.forward * Time.deltaTime * movSpeed;
+    {   
+        move();
+        setMaxHealth();
+        Die();
     }
 
+    private void setMaxHealth() {
+        if (setHealth) {
+            health = 100 + 10 * player.level;
+            setHealth = false;
+        }
+        if (player.levelUpBool) {
+            setHealth = true;
+        }
+            
+    }
+    /*
+    private void move() {
+        float overlapDistance = 2.0f;
+        Vector3 moveDirection = (player.transform.position - transform.position).normalized;
+        Vector3 targetPosition = transform.position + moveDirection * Time.deltaTime * movSpeed;
+        Collider[] colliders = Physics.OverlapSphere(targetPosition, overlapDistance);
+
+        // Loop through all colliders and check for overlapping enemies
+        foreach (Collider collider in colliders) {
+            if (collider.gameObject != gameObject && collider.CompareTag("Enemy")) {
+                return;
+            }
+        }
+        transform.LookAt(new Vector3(player.transform.position.x, 3, player.transform.position.z));
+        transform.position = targetPosition;
+    }
+    */
+    private void move() {
+        this.transform.LookAt(new Vector3(player.transform.position.x, 1, player.transform.position.z));
+        transform.position += transform.forward * Time.deltaTime * movSpeed;
+    }
+    
     public void OnTriggerEnter(Collider other) {
         if (collided == false && other == player.gameObject.GetComponent<Collider>()) {
             player.lastTimeHit = Time.time;
@@ -44,7 +76,14 @@ public class EnemyController : MonoBehaviour
     }
 
     private void Die() {
-        print(this.gameObject.name + "was killed!");
+        if (health <= 0) {
+            print(this.gameObject.name + "was killed!");
+            movSpeed = 0;
+            animator.SetBool(IS_DEAD, true);
+        }
+    }
+
+    private void destroy() {
         Destroy(this.gameObject);
         player.points += pointsValue;
     }

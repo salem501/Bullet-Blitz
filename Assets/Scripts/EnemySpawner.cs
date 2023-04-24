@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class EnemySpawner : MonoBehaviour
 {
+    private PlayerController player;
     [SerializeField]
     private GameObject Floor;
     [SerializeField]
@@ -25,6 +26,8 @@ public class EnemySpawner : MonoBehaviour
     void Start()
     {
         Spawn();
+        player = FindAnyObjectByType<PlayerController>();
+        setPopulationSize();
     }
 
     // Update is called once per frame
@@ -35,10 +38,14 @@ public class EnemySpawner : MonoBehaviour
         }
     }
 
+    private void setPopulationSize() {
+        populationSize = 8 + 2 * player.level;
+    }
+
     private Vector3 CalculateSpawnPos() {
-        float x = Random.Range(-Floor.transform.localScale.x - 1, Floor.transform.localScale.x - 1);
-        float y = 1;
-        float z = Random.Range(-Floor.transform.localScale.z - 1, Floor.transform.localScale.z - 1);
+        float x = Random.Range(-500,500);
+        float y = -0.5f;
+        float z = Random.Range(-500,500);
         return new Vector3(x,y,z);
     }
 

@@ -129,7 +129,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-154344
+  m_Name: pb_Mesh29564
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -3400,6 +3400,7 @@ GameObject:
   - component: {fileID: 1514485645}
   - component: {fileID: 1514485644}
   - component: {fileID: 1514485643}
+  - component: {fileID: 1514485646}
   m_Layer: 5
   m_Name: ShootingSpeed
   m_TagString: Untagged
@@ -3470,7 +3471,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1514485644}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1514485646}
+        m_TargetAssemblyTypeName: ShootingSpeedButton, Assembly-CSharp
+        m_MethodName: OnButtonPress
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1514485644
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3509,13 +3522,25 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1514485641}
   m_CullTransparentMesh: 1
+--- !u!114 &1514485646
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1514485641}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 17f95da317bbf53478740e2f6f8b478c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!43 &1536521797
 Mesh:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-171914
+  m_Name: pb_Mesh29586
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -3784,7 +3809,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-175004
+  m_Name: pb_Mesh29670
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -4088,6 +4113,11 @@ MonoBehaviour:
   lastTimeHealed: 0
   points: 0
   health: 100
+  level: 0
+  lastLevelPoints: 0
+  lastLevelUpgrade: 0
+  levelUp: 0
+  levelUpBool: 0
 --- !u!65 &1992050242
 BoxCollider:
   m_ObjectHideFlags: 0

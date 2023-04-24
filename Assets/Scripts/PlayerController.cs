@@ -10,8 +10,13 @@ public class PlayerController : MonoBehaviour {
     public int maxHealth = 100;
     public float lastTimeHit;
     public float lastTimeHealed;
-    public float points;
+    public int points;
     public float health;
+    public int level;
+    public int lastLevelPoints = 0;
+    public int lastLevelUpgrade;
+    public int levelUp;
+    public bool levelUpBool = false;
 
     private void Start() {
         health = maxHealth;
@@ -21,8 +26,19 @@ public class PlayerController : MonoBehaviour {
         HandleMovementInput();
         HandleRotationInput();
         HandleShootInput();
+        setLevel();
         Heal();
         Die();
+    }
+
+    private void setLevel() {
+        if(points % 5 == 0 && points > lastLevelPoints) {
+            level++;
+            lastLevelPoints = points;
+            levelUpBool = true;
+        }
+        levelUp = level - lastLevelUpgrade;
+        levelUpBool = false;
     }
 
     private void Heal() {

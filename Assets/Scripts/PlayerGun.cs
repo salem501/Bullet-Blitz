@@ -7,7 +7,7 @@ public class PlayerGun : MonoBehaviour
     [SerializeField]
     public Transform firingPoint;
     [SerializeField]
-    private float fireSpeed;
+    public float fireSpeed;
 
     private float lastTimeShot = 0;
 
