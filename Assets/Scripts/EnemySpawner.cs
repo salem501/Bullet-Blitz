@@ -8,7 +8,9 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField]
     private GameObject Floor;
     [SerializeField]
-    private GameObject enemyPrefab;
+    private GameObject zombiePrefab;
+    [SerializeField]
+    private GameObject bigZombiePrefab;
     [SerializeField]
     private float spawnRate;
     [SerializeField]
@@ -50,8 +52,14 @@ public class EnemySpawner : MonoBehaviour
     }
 
     private void Spawn() {
+        int bigZombiesPopulation = 20 * populationSize / 100;
         for(int i = 0; i < populationSize; i++) {
-                Instantiate(enemyPrefab, CalculateSpawnPos(), new Quaternion());
+            if (i < bigZombiesPopulation) {
+                Instantiate(bigZombiePrefab, CalculateSpawnPos(), new Quaternion());
+            }
+            else {
+                Instantiate(zombiePrefab, CalculateSpawnPos(), new Quaternion());
+            }
         }
         populationCycles++;
         lastTimeSpawned = Time.time;

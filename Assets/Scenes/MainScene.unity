@@ -1377,7 +1377,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-133634
+  m_Name: pb_Mesh29644
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -2236,7 +2236,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Floor: {fileID: 1090529125}
-  enemyPrefab: {fileID: 2183067499708755945, guid: 96503291837957a47bd0a7e197c8c940,
+  zombiePrefab: {fileID: 2183067499708755945, guid: 96503291837957a47bd0a7e197c8c940,
+    type: 3}
+  bigZombiePrefab: {fileID: 3321178437040379281, guid: 9193fec1f3d682647a3d252b7683e261,
     type: 3}
   spawnRate: 10
   populationSize: 20
@@ -3520,7 +3522,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1059751647}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 663.77, y: 353.3, z: 37.108643}
+  m_LocalPosition: {x: 663.77, y: 340, z: 37.108643}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:

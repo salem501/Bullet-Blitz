@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour {
-    public float movSpeed = 5f;
+    public float movSpeed = 7f;
     private Animator animator;
     private string IS_WALKING = "isWalking";
     public int maxHealth = 100;

@@ -9,11 +9,11 @@ public class EnemyController : MonoBehaviour
     public float health;
     private bool setHealth = true;
     [SerializeField]
-    private int pointsValue;
+    private int pointsValue = 1;
     [SerializeField]
     private float collisionDamage;
     [SerializeField]
-    private float movSpeed;
+    private float movSpeed = 10;
     [SerializeField]
     private PlayerController player;
 
