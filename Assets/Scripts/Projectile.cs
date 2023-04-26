@@ -15,11 +15,10 @@ public class Projectile : MonoBehaviour
     private bool shouldMove;
     private GameObject triggeringEnemy;
     [SerializeField] GameObject explosionPrefab;
-
+    [SerializeField] private AudioSource audioSource;
     // Start is called before the first frame update
     void Start()
     {
-        
     }
 
     // Update is called once per frame
@@ -32,7 +31,6 @@ public class Projectile : MonoBehaviour
 
     public void OnTriggerEnter(Collider other) {
         triggeringEnemy = other.gameObject;
-        Debug.Log("---->"+triggeringEnemy.name);
         if(triggeringEnemy.name== "Skeletonzombie T Avelange(Clone)") {
             triggeringEnemy.GetComponent<BigZombieController>().health -= damage;
         }
@@ -45,6 +43,7 @@ public class Projectile : MonoBehaviour
     }
 
     public void activateProjectile() {
+        audioSource.Play();
         firingPoint = transform.position;
         shouldMove = true;
     }
